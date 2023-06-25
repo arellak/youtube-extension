@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "manifest_version": 3,
+  "name": "YouTube extension",
+  "description": "YouTube extension",
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/watch?*"],
+      "js": ["js/contentScript.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "permissions": ["tabs", "scripting", "storage"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
