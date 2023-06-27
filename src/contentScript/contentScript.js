@@ -26,7 +26,6 @@ export default function ContentScript() {
             }
           };
 
-
           const videoResponse = await fetch(videoUrl, videoOptions);
           const vData = await videoResponse.json();
           setVideoData(vData);
