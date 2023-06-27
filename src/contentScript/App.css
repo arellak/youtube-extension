@@ -32,15 +32,6 @@ label {
   font-weight: bold;
 }
 
-.channel_link {
-  color: #d3d3d3;
-  text-decoration: none;
-}
-
-.channel_link:hover {
-  color: #d3d3d3;
-}
-
 .channel_description {
   text-align: justify;
   text-justify: inter-word;
@@ -88,11 +79,14 @@ label {
 
 .channel_link {
   color: #d3d3d3;
+  text-decoration: none;
   margin: 0px 8px 10px 0px;
   transition: all 0.2s ease-in-out;
 }
 
 .channel_link:hover {
+  font-size: 1.07em;
+  color: #00A97F;
   transition: all 0.2s ease-in-out;
 }
 
@@ -110,13 +104,26 @@ label {
   margin-right: 10px;
 }
 
+.channel_keyword_link {
+  color: #d3d3d3;
+  text-decoration: none;
+  margin: 0px 8px 10px 0px;
+  transition: all 0.2s ease-in-out;
+}
+
+.channel_keyword_link:hover {
+  font-size: 1.03em;
+  color: #00A97F;
+  transition: all 0.2s ease-in-out;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
   html {
     height:90%;
 	}
 
 	body {
-    background: #3F485B;
+    background: #222222;
     display: flex;
     align-items: center;
     height: 90%;
@@ -128,7 +135,7 @@ label {
 	.back span {
 		font-size: 1.4em;
 		color: #00A97F;
-		background: #262B37;
+		background: #222222;
 		display: table-cell;
 		box-shadow: inset 0 0 5px rgba(0,0,0,0.3), 0 5px 0 #ccc;
 		padding: 0 15px;

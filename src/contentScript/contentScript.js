@@ -95,7 +95,7 @@ export default function ContentScript() {
             <label>Links:</label>
             <ul className="channel_links">{ channelData?.links.length > 0 && channelData?.links.map((link) => <li className="channel_link_item"><a className="channel_link" href={link?.targetUrl}>{ link?.title }</a></li>) } </ul>
             <label>Keywords:</label>
-            <ul className="channel_keywords">{ channelData?.keywords.length > 0 && channelData?.keywords.map((keyword) => <li className="channel_keyword_item">{ keyword }</li>) }</ul>
+            <ul className="channel_keywords">{ channelData?.keywords.length > 0 && channelData?.keywords.map((keyword) => <li className="channel_keyword_item"><a className="channel_keyword_link" href={"https://www.youtube.com/results?search_query=" + keyword.replaceAll(" ", "+")}>{ keyword }</a></li>) }</ul>
           </div>
         </>
       );
