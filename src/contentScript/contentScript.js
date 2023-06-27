@@ -1,29 +1,32 @@
 import React, {useEffect} from "react";
+// eslint-disable-next-line no-unused-vars
 import Content from "./Content";
+// eslint-disable-next-line no-unused-vars
 import Loading from "./Loading";
+// eslint-disable-next-line no-unused-vars
 import Error from "./Error";
 import "./App.css";
 
-export default function ContentScript() {
+export default function ContentScript(){
   const [videoData, setVideoData] = React.useState({});
   const [channelData, setChannelData] = React.useState({});
   const [apiKey, setApiKey] = React.useState("");
   const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async() => {
       const videoId = window.location.href.match(/(?<==).+/)?.[0];
       const videoUrl = "https://youtube138.p.rapidapi.com/video/details/?id=" + videoId + "&hl=en&gl=US";
 
       try {
-        chrome.storage.sync.get("apiKey", async (result) => {
+        chrome.storage.sync.get("apiKey", async(result) => {
           if(result.apiKey && result.apiKey !== ""){
             const videoOptions = {
-              method: 'GET',
+              method: "GET",
               headers: {
-                'X-RapidAPI-Key': result.apiKey,
-                'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
-              }
+                "X-RapidAPI-Key": result.apiKey,
+                "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
+              },
             };
 
             const videoResponse = await fetch(videoUrl, videoOptions);
@@ -32,13 +35,13 @@ export default function ContentScript() {
 
             const channelId = await vData?.author?.channelId;
             const channelUrl = "https://youtube138.p.rapidapi.com/channel/details/?id=" + channelId + "&hl=en&gl=US";
-            
+
             const channelOptions = {
-              method: 'GET',
+              method: "GET",
               headers: {
-                'X-RapidAPI-Key': result.apiKey,
-                'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
-              }
+                "X-RapidAPI-Key": result.apiKey,
+                "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
+              },
             };
 
             const channelResponse = await fetch(channelUrl, channelOptions);
@@ -49,7 +52,7 @@ export default function ContentScript() {
           setLoading(false);
         });
       }
-      catch (error) {
+      catch (error){
         console.log(error);
       }
     };
@@ -73,19 +76,15 @@ export default function ContentScript() {
         </>
       );
     }
-    else {
-      return (
-        <>
-          <Error message="Something went wrong retrieving the data..." />
-        </>
-      );
-    }
-  }
-  else{
-    return(
+    return (
       <>
-        <Error message="Please enter your RapidAPI key in the extension options" />
+        <Error message="Something went wrong retrieving the data..." />
       </>
     );
   }
+  return(
+    <>
+      <Error message="Please enter your RapidAPI key in the extension options" />
+    </>
+  );
 }

@@ -2,6 +2,28 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 import path from "path";
 
+function getHtmlPlugins(chunks){
+  return chunks.map(
+    (chunk) =>
+      new HtmlWebpackPlugin({
+        title: "YouTube extension",
+        filename: `./js/${chunk}.html`,
+        chunks: [chunk],
+        templateContent: `
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <title>YouTube extension</title>
+            </head>
+            <body>
+              <div id="root"></div>
+            </body>
+          </html>
+        `,
+      }),
+  );
+}
 
 const options = {
   entry: {
@@ -18,9 +40,9 @@ const options = {
           {
             loader: "babel-loader",
             options: {
-              presets: ['@babel/env', '@babel/preset-react']
-            }
-          }
+              presets: ["@babel/env", "@babel/preset-react"],
+            },
+          },
         ],
         exclude: /node_modules/,
       },
@@ -31,8 +53,8 @@ const options = {
           "style-loader",
           "css-loader",
         ],
-      }
-    ]
+      },
+    ],
   },
   plugins: [
     new CopyPlugin({
@@ -48,7 +70,7 @@ const options = {
   output: {
     path: path.resolve("./dist/"),
     filename: "./js/[name].js",
-    publicPath: '/',
+    publicPath: "/",
   },
   optimization: {
     splitChunks: {
@@ -58,28 +80,5 @@ const options = {
     },
   },
 };
-
-function getHtmlPlugins(chunks) {
-  return chunks.map(
-    (chunk) =>
-      new HtmlWebpackPlugin({
-          title: "YouTube extension",
-          filename: `./js/${chunk}.html`,
-          chunks: [chunk],
-          templateContent: `
-            <!DOCTYPE html>
-            <html>
-              <head>
-                <meta charset="utf-8">
-                <title>YouTube extension</title>
-              </head>
-              <body>
-                <div id="root"></div>
-              </body>
-            </html>
-          `
-      })
-  );
-}
 
 export default options;
