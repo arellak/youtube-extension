@@ -16,3 +16,8 @@ It is based on the [Rapid YouTube API](https://rapidapi.com/Glavier/api/youtube1
 8. Enter your Rapid API Key in the extension options 
 9. Go to [YouTube](https://www.youtube.com/) and click on any video
 10. Enjoy!
+
+## Preview
+<img src="assets/popup.png" alt="Extension popup">
+<br>
+<img src="assets/extension.png" alt="Extension" width="450px">
