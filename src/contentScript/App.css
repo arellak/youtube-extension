@@ -112,7 +112,6 @@ label {
 }
 
 .channel_keyword_link:hover {
-  font-size: 1.03em;
   color: #00A97F;
   transition: all 0.2s ease-in-out;
 }
