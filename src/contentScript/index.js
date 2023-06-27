@@ -7,12 +7,18 @@ function init(parentContainer){
   const appContainer = document.createElement("div");
   appContainer.className = "arellak-app-container";
 
-  setTimeout(() => {
+
+  const observer = new MutationObserver((mutationList, observer) => {
+    const contentScript = document.querySelector(".arellak-app");
     const targetNode = document.querySelector(parentContainer);
-    targetNode?.insertBefore(appContainer, targetNode?.firstChild);
-    const root = createRoot(appContainer);
-    root.render(<ContentScript />);
-  }, 2000);
+    if(targetNode && !contentScript){
+      targetNode?.insertBefore(appContainer, targetNode?.firstChild);
+      const root = createRoot(appContainer);
+      root.render(<ContentScript />);
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 }
 
 function removeOldApp(){
@@ -22,17 +28,11 @@ function removeOldApp(){
   }
 }
 
-const observeUrlChange = () => {
-  let oldHref = document.location.href;
-  const body = document.querySelector("body");
-  const observer = new MutationObserver(() => {
-    if (oldHref !== document.location.href && document.location.href.match(/https:\/\/www\.youtube\.com\/watch\?/)) {
-      oldHref = document.location.href;
-      changeParent();
-    }
-  });
-  observer.observe(body, { childList: true, subtree: true });
-};
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if(request.message === "urlChanged"){
+    changeParent();
+  }
+});
 
 function changeParent(){
   removeOldApp();
@@ -43,8 +43,6 @@ function changeParent(){
     init("#secondary");
   }
 }
-
-window.onload = observeUrlChange;
 
 window.onresize = () => {
   changeParent();

@@ -1,15 +1,21 @@
-.arellak-app-container {
+body {
+  background: #222222;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: #222222;
 }
 
 label {
   color: #d3d3d3;
   font-size: 1.3em;
   font-weight: bold;
+}
+
+.arellak-app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #222222;
 }
 
 .arellak-app {
@@ -116,61 +122,58 @@ label {
   transition: all 0.2s ease-in-out;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-  html {
-    height:90%;
-	}
+.extension_error_message {
+  color: #a80000;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;  
+}
 
-	body {
-    background: #222222;
-    display: flex;
-    align-items: center;
-    height: 90%;
-	}
-	.back {
-		margin: 0.5em auto;
-		font-family: "Roboto";
-	}
-	.back span {
-		font-size: 1.4em;
-		color: #00A97F;
-		background: #222222;
-		display: table-cell;
-		box-shadow: inset 0 0 5px rgba(0,0,0,0.3), 0 5px 0 #ccc;
-		padding: 0 15px;
-		line-height: 50px;
-		animation: jumb 2s infinite;
-	}
-	@keyframes jumb {
-		0% {
-			transform:translateY(0px)
-		}
-		50% {
-			transform:translateY(-15px);
-			box-shadow:0 15px 0 #00A97F;
-		}
-		100% {
-			transform:translateY(0px)	
-		}
-	}
-	.back span:nth-child(1) {
-		animation-delay:0s;
-	}
-	.back span:nth-child(2) {
-		animation-delay:.1s;	
-	}
-	.back span:nth-child(3) {
-		animation-delay:.2s;
-	}
-	.back span:nth-child(4) {
-		animation-delay:.3s;	
-	}
-	.back span:nth-child(5) {
-		animation-delay:.4s;
-	}
-	.back span:nth-child(6) {
-		animation-delay:.5s;	
-	}
-	.back span:nth-child(7) {
-		animation-delay:.6s;
-	}
+.back {
+  margin: 0.5em auto;
+  font-family: "Arial";
+}
+.back span {
+  font-size: 1.4em;
+  color: #00A97F;
+  background: #222222;
+  display: table-cell;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.3), 0 5px 0 #ccc;
+  padding: 0 15px;
+  line-height: 50px;
+  animation: jumb 2s infinite;
+}
+
+@keyframes jumb {
+  0% {
+    transform:translateY(0px)
+  }
+  50% {
+    transform:translateY(-15px);
+    box-shadow:0 15px 0 #00A97F;
+  }
+  100% {
+    transform:translateY(0px)	
+  }
+}
+.back span:nth-child(1) {
+  animation-delay:0s;
+}
+.back span:nth-child(2) {
+  animation-delay:.1s;	
+}
+.back span:nth-child(3) {
+  animation-delay:.2s;
+}
+.back span:nth-child(4) {
+  animation-delay:.3s;	
+}
+.back span:nth-child(5) {
+  animation-delay:.4s;
+}
+.back span:nth-child(6) {
+  animation-delay:.5s;	
+}
+.back span:nth-child(7) {
+  animation-delay:.6s;
+}

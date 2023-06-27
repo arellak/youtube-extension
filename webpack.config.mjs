@@ -1,11 +1,13 @@
-const path = require("path");
-const HTMLPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import path from "path";
 
-module.exports = {
+
+const options = {
   entry: {
     background: "./src/background/background.js",
     contentScript: "./src/contentScript/index.js",
+    popup: "./src/popup/index.js",
   },
   mode: "production",
   module: {
@@ -35,23 +37,17 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: "./manifest.json", to: "../manifest.json" },
-        { from: "./src/popup/popup.js", to: "./popup.js" },
+        { from: "./manifest.json", to: "./manifest.json" },
       ],
     }),
-    new HTMLPlugin({
-      filename: path.resolve(__dirname, 'dist/popup.html'),
-      template: './src/popup/popup.html',
-      chunks: ['popup'],
-    }),
-    ...getHtmlPlugins(["index"]),
+    ...getHtmlPlugins(["index", "popup"]),
   ],
   resolve: {
     extensions: [".js", ".jsx"],
   },
   output: {
-    path: path.join(__dirname, "dist/js"),
-    filename: "[name].js",
+    path: path.resolve("./dist/"),
+    filename: "./js/[name].js",
     publicPath: '/',
   },
   optimization: {
@@ -66,10 +62,24 @@ module.exports = {
 function getHtmlPlugins(chunks) {
   return chunks.map(
     (chunk) =>
-      new HTMLPlugin({
+      new HtmlWebpackPlugin({
           title: "YouTube extension",
-          filename: `${chunk}.html`,
+          filename: `./js/${chunk}.html`,
           chunks: [chunk],
+          templateContent: `
+            <!DOCTYPE html>
+            <html>
+              <head>
+                <meta charset="utf-8">
+                <title>YouTube extension</title>
+              </head>
+              <body>
+                <div id="root"></div>
+              </body>
+            </html>
+          `
       })
   );
 }
+
+export default options;

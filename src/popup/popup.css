@@ -1,0 +1,116 @@
+body {
+  background-color: #282c34;
+}
+.api-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 5px;
+}
+
+.apiButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.apiText {
+  margin-bottom: -20px;
+}
+
+.saveButton, .deleteButton {
+  --color: #00A97F;
+  --color2: rgb(10, 25, 30);
+  padding: 0.8em 1.75em;
+  background-color: transparent;
+  border-radius: 6px;
+  border: .3px solid var(--color);
+  transition: .5s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  font-weight: 300;
+  font-size: 12px;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  text-transform: uppercase;
+  color: var(--color);
+}
+
+.saveButton::after, .saveButton::before, .deleteButton::after, .deleteButton::before {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: skew(90deg) translate(-50%, -50%);
+  position: absolute;
+  inset: 50%;
+  left: 25%;
+  z-index: -1;
+  transition: .5s ease-out;
+  background-color: var(--color);
+}
+
+.saveButton::before, .deleteButton::before {
+  top: -50%;
+  left: -25%;
+  transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+}
+
+.saveButton:hover::before, .deleteButton:hover::before {
+  transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+}
+
+.saveButton:hover::after, .deleteButton:hover::after {
+  transform: skew(45deg) translate(-50%, -50%);
+}
+
+.saveButton:hover, .deleteButton:hover {
+  color: var(--color2);
+}
+
+.saveButton:active, .deleteButton:active {
+  filter: brightness(.7);
+  transform: scale(.98);
+}
+
+.input-wrapper {
+  position: relative;
+  width: 200px;
+  margin: 20px auto;
+}
+
+.api_input {
+  font-size: 13px;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  color: #00A97F;
+  width: 100%;
+  background-color: transparent;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00A97F;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.api_input:focus {
+  border-color: #00A97F;
+  outline: none;
+}
+
+.api_input:focus + .underline {
+  transform: scaleX(1);
+}

@@ -3,12 +3,6 @@
   "version": "1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/chrome": "^0.0.237",
-    "@types/react": "^18.2.13",
-    "@types/react-dom": "^18.2.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -16,8 +10,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "webpack --config webpack.config.js",
-    "watch": "webpack -w --config webpack.config.js"
+    "build": "webpack --config webpack.config.mjs",
+    "watch": "webpack -w --config webpack.config.mjs"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +33,12 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.22.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/chrome": "^0.0.238",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
     "babel-loader": "^9.1.2",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
