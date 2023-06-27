@@ -7,7 +7,6 @@ function init(parentContainer){
   const appContainer = document.createElement("div");
   appContainer.className = "arellak-app-container";
 
-
   const observer = new MutationObserver((mutationList, observer) => {
     const contentScript = document.querySelector(".arellak-app");
     const targetNode = document.querySelector(parentContainer);
@@ -44,17 +43,10 @@ function changeParent(){
   }
 }
 
+let resizeTimeout;
 window.onresize = () => {
-  changeParent();
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(changeParent, 200);
 };
-
-setInterval(() => {
-  const container = document.querySelectorAll(".arellak-app-container");
-  if(container.length > 1){
-    for(let i = 1; i < container.length; i++){
-      container[i].remove();
-    }
-  }
-}, 10);
 
 changeParent();
